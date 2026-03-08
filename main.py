@@ -1,20 +1,18 @@
 
 # 二分查找
-# 循环不变量: 目标值 target 始终在区间 [low, high] 中
-# 循环不变量: 目标值 target 始终不在区间 [low, high] 外?
+# 循环不变量: 目标值 target 不在区间 [low, hig] 外.
 def binary_search(arr: list[int], target: int) -> int:
     low = 0
-    high = len(arr) - 1
-    while low <= high:
+    high = len(arr)
+    while low < high:
         mid = (low + high) // 2
-        if arr[mid] == target:
+        if target == arr[mid]:
             return mid
-        elif arr[mid] < target:
-            low = mid + 1
+        elif target < arr[mid]:
+            high = mid
         else:
-            high = mid - 1
-    # 如果走到这里，说明 target 不在闭区间 [low, high] 中
-    # 因为此时 low > high，区间为空
+            # target > arr[mid]
+            low = mid + 1
     return -1
 
 
