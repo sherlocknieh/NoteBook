@@ -28,3 +28,4 @@ if __name__ == "__main__":
     target = 5
     index = binary_search(arr, target)
     print(f"Target {target} found at index: {index}")
+
