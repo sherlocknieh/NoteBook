@@ -1,11 +1,14 @@
-# 单词反转
+def MostElementIn(A):
+    hashTable = {}
+    mostElement = None
+    mostCount = 0
+    for x in A:
+        hashTable[x] = hashTable.get(x, 0) + 1
+        if hashTable[x] > mostCount:
+            mostCount = hashTable[x]
+            mostElement = x
+    print(mostElement, mostCount)
 
-# 输入样例
-# Hello World
 
-# 输出样例
-# olleH dlroW
-
-words = input().split()
-reversed_words = [word[::-1] for word in words]
-print(' '.join(reversed_words))
+A = [1, 2, 3, 2, 4, 2, 5]
+MostElementIn(A)
