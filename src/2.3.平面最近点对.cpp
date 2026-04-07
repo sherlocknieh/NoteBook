@@ -1,10 +1,37 @@
+// 2.3 平面最近点对
+// 给定若干点位坐标，寻找距离最近的两点之间的距离
+// 寻找效率好于 O(n^2) 的算法。
+
+// 输入:
+// 第一行是一个整数n，代表平面上点的数量
+// 接下来n行，每行两个整数 x y，代表平面上一个点的横纵坐标
+
+// 3
+// 1 1
+// 2 2
+// 3 3
+
+
+// 输出: (精确到小数点后4位)
+// 1.4142
+
+
+// 思路：分治法
+// 先把所有点按照x坐标排序;
+// 然后从中间分成两半, 递归求解左半部和右半部的最近点对距离;
+// 然后在分界线附近寻找可能的更近的点对。
+// 分界线附近找点时, 只找离分界线小于d的点;
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
+// 定义点数据结构
 struct Point {
     double x, y;
 };
 
+// 计算两点之间的距离
 double dist(const Point& a, const Point& b) {
     return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
 }
@@ -50,7 +77,7 @@ double closestPairRec(vector<Point>& points, int l, int r) {
     return d;
 }
 
-// 主函数，先按x坐标排序，然后调用递归函数
+// 入口函数，先按x坐标排序，然后调用递归函数
 double closestPair(vector<Point>& points) {
     sort(points.begin(), points.end(), [](const Point& a, const Point& b) {
         return a.x < b.x;
@@ -58,6 +85,7 @@ double closestPair(vector<Point>& points) {
     return closestPairRec(points, 0, points.size());
 }
 
+// 本地测试
 void test() {
     vector<Point> points = {{1, 1}, {2, 2}, {3, 3}};
     cout << fixed << setprecision(4) << closestPair(points) << endl;
