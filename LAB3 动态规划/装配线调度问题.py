@@ -21,16 +21,43 @@
 # 输出:
 # 38
 
-
 def AssemblyLineScheduling(n, a1, a2, t1, t2, e, x):
     s1 = [0] * n    # 装配线1上各装配点的最快完成时间
     s2 = [0] * n    # 装配线2上各装配点的最快完成时间
+    path1 = [0] * n # 装配线1上各装配点的最快路线来源
+    path2 = [0] * n # 装配线2上各装配点的最快路线来源
     s1[0] = e[0] + a1[0]
     s2[0] = e[1] + a2[0]
     for i in range(1, n):
-        s1[i] = a1[i] + min(s1[i-1], s2[i-1] + t2[i-1])
-        s2[i] = a2[i] + min(s2[i-1], s1[i-1] + t1[i-1])
-    return min(s1[n-1] + x[0], s2[n-1] + x[1])
+        if s1[i-1] == min(s1[i-1], s2[i-1] + t2[i-1]):
+            s1[i] = a1[i] + s1[i-1]
+            path1[i-1] = 1
+        else:
+            s1[i] = a1[i] + s2[i-1] + t2[i-1]
+            path1[i-1] = 2
+        
+        if s2[i-1] == min(s2[i-1], s1[i-1] + t1[i-1]):
+            s2[i] = a2[i] + s2[i-1]
+            path2[i-1] = 2
+        else:
+            s2[i] = a2[i] + s1[i-1] + t1[i-1]
+            path2[i-1] = 1
+    
+    path = [0] * n  # 最终最快路线
+
+    if x[0] + s1[n-1] < x[1] + s2[n-1]:
+        path[n-1] = 1
+    else:
+        path[n-1] = 2
+    
+    for i in range(n-2, -1, -1):
+        if path[i] == 1:
+            path[i] = path1[i]
+        else:
+            path[i] = path2[i]
+    
+    return path, min(s1[n-1] + x[0], s2[n-1] + x[1])
+
 
 def test():
     n = 6
