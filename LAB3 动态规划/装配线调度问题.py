@@ -22,41 +22,36 @@
 # 38
 
 def AssemblyLineScheduling(n, a1, a2, t1, t2, e, x):
-    s1 = [0] * n    # 装配线1上各装配点的最快完成时间
-    s2 = [0] * n    # 装配线2上各装配点的最快完成时间
-    path1 = [0] * n # 装配线1上各装配点的最快路线来源
-    path2 = [0] * n # 装配线2上各装配点的最快路线来源
-    s1[0] = e[0] + a1[0]
-    s2[0] = e[1] + a2[0]
-    for i in range(1, n):
-        if s1[i-1] == min(s1[i-1], s2[i-1] + t2[i-1]):
-            s1[i] = a1[i] + s1[i-1]
-            path1[i-1] = 1
-        else:
-            s1[i] = a1[i] + s2[i-1] + t2[i-1]
-            path1[i-1] = 2
-        
-        if s2[i-1] == min(s2[i-1], s1[i-1] + t1[i-1]):
-            s2[i] = a2[i] + s2[i-1]
-            path2[i-1] = 2
-        else:
-            s2[i] = a2[i] + s1[i-1] + t1[i-1]
-            path2[i-1] = 1
-    
-    path = [0] * n  # 最终最快路线
 
-    if x[0] + s1[n-1] < x[1] + s2[n-1]:
-        path[n-1] = 1
-    else:
-        path[n-1] = 2
-    
-    for i in range(n-2, -1, -1):
-        if path[i] == 1:
-            path[i] = path1[i]
+    a1[0]   += e[0]  # 把进入时间合并到开头装配时间上
+    a2[0]   += e[1]  # 把进入时间合并到开头装配时间上
+
+    a1[n-1] += x[0]  # 把退出时间合并到末尾装配时间上
+    a2[n-1] += x[1]  # 把退出时间合并到末尾装配时间上
+
+    path_1 = [0] * (n-1)  # 装配线1上的最佳来源路径
+    path_2 = [0] * (n-1)  # 装配线2上的最佳来源路径
+
+    for i in range(1, n):
+        # 如果从装配线1直行更快，就走装配线1
+        if a1[i-1] <= a2[i-1] + t2[i-1]:
+            a1[i] += a1[i-1]
+            path_1[i-1] = 1
+        # 如果从装配线2转过来更快，就从装配线2来
         else:
-            path[i] = path2[i]
-    
-    return path, min(s1[n-1] + x[0], s2[n-1] + x[1])
+            a1[i] += a2[i-1] + t2[i-1]
+            path_1[i-1] = 2
+        
+        # 如果从装配线2直行更快，就走装配线2
+        if a2[i-1] <= a1[i-1] + t1[i-1]:
+            a2[i] += a2[i-1]
+            path_2[i-1] = 2
+        # 如果从装配线1转过来更快，就从装配线1来
+        else:
+            a2[i] += a1[i-1] + t1[i-1]
+            path_2[i-1] = 1
+
+    print('min:',min(a1[n-1], a2[n-1]))
 
 
 def test():
@@ -67,7 +62,7 @@ def test():
     t2 = [2, 1, 2, 2, 1]
     e = [2, 4]
     x = [3, 2]
-    print(AssemblyLineScheduling(n, a1, a2, t1, t2, e, x))
+    AssemblyLineScheduling(n, a1, a2, t1, t2, e, x)
 test()
 
 def main():
