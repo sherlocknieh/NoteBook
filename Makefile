@@ -6,3 +6,6 @@ run:
 
 clean:
 	rm -f main.exe
+
+serve:
+	./FPGA/hw_server.exe
