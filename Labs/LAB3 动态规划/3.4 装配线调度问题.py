@@ -29,8 +29,8 @@ def AssemblyLineScheduling(n, a1, a2, t1, t2, e, x):
     a1[n-1] += x[0]  # 把退出时间合并到末尾装配时间上
     a2[n-1] += x[1]  # 把退出时间合并到末尾装配时间上
 
-    path_1 = [0] * (n-1)  # 装配线1上的最佳来源路径
-    path_2 = [0] * (n-1)  # 装配线2上的最佳来源路径
+    path_1 = [0] * (n-1)  # 装配线1上的最优来源表
+    path_2 = [0] * (n-1)  # 装配线2上的最优来源表
 
     for i in range(1, n):
         # 如果从装配线1直行更快，就走装配线1
@@ -51,7 +51,19 @@ def AssemblyLineScheduling(n, a1, a2, t1, t2, e, x):
             a2[i] += a1[i-1] + t1[i-1]
             path_2[i-1] = 1
 
+    # 打印最优装配时间
     print('min:',min(a1[n-1], a2[n-1]))
+
+    # 打印最优装配方案(从后往前输出)
+    if a1[n-1] <= a2[n-1]:
+        print('line 1 station', n)
+        for i in range(n-1, 0, -1):
+            print('line', path_1[i-1], 'station', i)
+    else:
+        print('line 2 station', n)
+        for i in range(n-1, 0, -1):
+            print('line', path_2[i-1], 'station', i)
+
 
 
 def test():
@@ -73,5 +85,5 @@ def main():
     t2 = [int(i) for i in input().split()]
     e = [int(i) for i in input().split()]
     x = [int(i) for i in input().split()]
-    print(AssemblyLineScheduling(n, a1, a2, t1, t2, e, x))
+    AssemblyLineScheduling(n, a1, a2, t1, t2, e, x)
 main()
