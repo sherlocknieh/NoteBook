@@ -8,7 +8,7 @@ def test():
     a = [-1, 2, 3]
     algorithm(n,a)
 
-def main():
+if __name__ == "__main__":
     test()
     n = int(input())
     a = list(map(int,input().split()))
