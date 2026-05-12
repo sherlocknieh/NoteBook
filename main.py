@@ -1,5 +1,15 @@
-a = [1,3,5,4,2]
-str_list = ['12','3','42']
+# 算法模板
 
-arr = map(int, str_list)
-print(arr)
+def algorithm(n,a):
+    print("Hello, World!")
+
+def test():
+    n = 3
+    a = [-1, 2, 3]
+    algorithm(n,a)
+
+def main():
+    test()
+    n = int(input())
+    a = list(map(int,input().split()))
+    algorithm(n,a)
