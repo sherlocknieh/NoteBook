@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "baseUrl": "http://xmuoj.com",
+  "problemId": 6177,
+  "contestId": 342,
+  "contestTitle": "算法设计与分析2026第四次实验课（曹刘娟、张德富、沈思淇）",
+  "displayId": "ACW908",
+  "title": "最大不相交区间数量",
+  "language": "Python3",
+  "sourceFile": "main.py",
+  "sourceFiles": {
+    "Python3": "main.py"
+  },
+  "createdAt": "2026-05-12T11:04:34.933Z"
+}
