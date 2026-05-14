@@ -1,7 +1,8 @@
 # 算法模板
 
 def algorithm(n,a):
-    print("Hello, World!")
+    print('n:',n)
+    print('a:',a)
 
 def test():
     n = 3
