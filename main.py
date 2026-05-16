@@ -5,9 +5,8 @@ def solve(n,a):
     print('a:',a)
 
 def test():
-    n = 3
-    a = [-1, 2, 3]
-    solve(n,a)
+    grid = list(input())
+    print('grid:',grid)
 
 if __name__ == "__main__":
     test()
