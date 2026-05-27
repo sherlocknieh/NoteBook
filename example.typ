@@ -1,9 +1,12 @@
 // 全局格式设置
 
 
-// 应用暗黑高对比度主题
-#import "@preview/gruvy:2.1.0": gruvbox, theme-colors
-#show: gruvbox.with(theme-color: theme-colors.dark.hard)
+// 导入夜间主题
+// #import "@preview/nordic:0.1.0" as nordic
+// #show: nordic.default
+
+#import "@preview/catppuccin:1.1.0": catppuccin, flavors
+#show: catppuccin.with(flavors.mocha)
 
 // 页面格式设置
 #set page(
@@ -17,7 +20,7 @@
 )
 // 标题格式设置
 #set heading(
-  //numbering: "1." // 开启自动编号，格式为 1.、1.1.、1.1.1. 等
+  numbering: "1." // 开启自动编号，格式为 1.、1.1.、1.1.1. 等
 )
 // 段落格式设置
 #set par(
@@ -35,6 +38,8 @@
 
 
 #title[Typst 文档说明]
+
+= 文档说明
 
 Typst 文档由 [文档块] 和 {代码块} 混合嵌套组成;
 
@@ -155,14 +160,22 @@ $ f(x) = cases(
 
 
 
+
+== 将Jupyter notebook嵌入到Typst文件中
+
 #import "@preview/callisto:0.2.5"
 
-// 将Jupyter notebook嵌入到Typst文件中
 #callisto.render(
   nb: json("example.ipynb")  // 加载你的ipynb文件
 )
 
-// 表格
+
+
+
+
+
+== 表格
+
 #figure(
   table(
     // 对齐方式：水平居中 + 垂直居中
@@ -184,6 +197,7 @@ $ f(x) = cases(
   caption: [三线表示例],
 )
 
+== 插图
 
 #figure(
   rect(stroke: 0.5pt + gray,  inset: 0%)[
@@ -192,6 +206,7 @@ $ f(x) = cases(
   caption: [带边框和标题的插图],
 )
 
+== Mermaid 图表
 
 #import "@preview/mmdr:0.2.2": mermaid
 
@@ -224,21 +239,7 @@ sequenceDiagram
 
 
 
-#import "@preview/mmdr:0.2.2": mermaid
-
-#figure(
-mermaid("
-stateDiagram-v2
-    state \"我的状态\" as S1
-    state \"选择状态\" as point <<choice>>
-
-    S1 --> point: 自旋
-    point --> S1
-	"
-  ),
-  caption: [状态机示例]
-)
-
+== Flowchart 图表
 
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
 
@@ -264,8 +265,10 @@ caption: [数据库分类示例],
 )
 
 
-#import "@preview/finite:0.5.0"
 
+== 状态机图
+
+#import "@preview/finite:0.5.0"
 
 #finite.automaton(
   // 2. 状态转移字典（标准状态名称作为键值）
@@ -287,7 +290,10 @@ caption: [数据库分类示例],
 )
 
 
-hello, world!
+
+
+
+== 作业模板
 
 
 #import "@preview/problemst:0.1.2": pset
