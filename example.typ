@@ -1,5 +1,10 @@
 // 全局格式设置
 
+
+// 应用暗黑高对比度主题
+#import "@preview/gruvy:2.1.0": gruvbox, theme-colors
+#show: gruvbox.with(theme-color: theme-colors.dark.hard)
+
 // 页面格式设置
 #set page(
   paper: "a4",    // 纸张大小

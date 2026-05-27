@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "baseUrl": "http://xmuoj.com",
+  "problemId": 6205,
+  "contestId": 344,
+  "contestTitle": "算法设计与分析2026第五次实验课（曹刘娟、张德富、沈思淇）",
+  "displayId": "FTCT014",
+  "title": "厦门大学的年夜饭",
+  "language": "Python3",
+  "sourceFile": "main.py",
+  "sourceFiles": {
+    "Python3": "main.py"
+  },
+  "createdAt": "2026-05-15T15:42:13.230Z"
+}
