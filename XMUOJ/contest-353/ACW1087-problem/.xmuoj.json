@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "baseUrl": "http://xmuoj.com",
+  "problemId": 6298,
+  "contestId": 353,
+  "contestTitle": "算法设计与分析2026第七次实验课（曹刘娟、张德富、沈思淇）",
+  "displayId": "ACW1087",
+  "title": "修剪草坪",
+  "language": "Python3",
+  "sourceFile": "main.py",
+  "sourceFiles": {
+    "Python3": "main.py",
+    "C++": "main.cpp"
+  },
+  "createdAt": "2026-06-03T01:03:45.015Z"
+}

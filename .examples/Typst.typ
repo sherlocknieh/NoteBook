@@ -166,7 +166,7 @@ $ f(x) = cases(
 #import "@preview/callisto:0.2.5"
 
 #callisto.render(
-  nb: json("example.ipynb")  // 加载你的ipynb文件
+  nb: json(".example/Notebook.ipynb")  // 加载你的ipynb文件
 )
 
 
