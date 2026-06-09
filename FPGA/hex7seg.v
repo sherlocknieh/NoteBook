@@ -1,15 +1,11 @@
-// 4位数码管显示模块
+// 16进制数码管显示模块
+// 输入一个4位二进制数，输出对应的7段显示信号
 
 module hex7seg(
-    input [3:0] hex,        // 4位二进制输入，表示要显示的十六进制数
-    input point,            // 小数点控制信号，1表示点亮小数点，0表示不点亮
-    input [1:0] digit,      // 位选输入信号，表示当前要点亮的数码管（0-3）
-    output [3:0] digits,    // 位选输出信号，1表示当前数码管被选中，0表示未被选中
-    output reg [7:0] segs   // 段选输出信号，7位控制a-g段，1表示点亮，0表示不点亮
+    input [3:0] hex,            // 4位二进制输入
+    input point,                // 小数点控制信号
+    output reg [7:0] segs       // 段选输出信号
 );
-    // 位选控制
-    assign digits = (1 << digit);
-    // 段译码器
     always @(*) begin
         case (hex)
             4'b0000: segs = 8'b11111100; // 0
@@ -28,8 +24,9 @@ module hex7seg(
             4'b1101: segs = 8'b01111010; // d
             4'b1110: segs = 8'b10011110; // E
             4'b1111: segs = 8'b10001110; // F
-            default: segs = 8'b00000000; // 默认空白
+            default: segs = 8'b10001110; // 默认显示 F
         endcase
-        segs[0] = point;        // 小数点控制
+        // 小数点
+        segs[0] = point;
     end
 endmodule
