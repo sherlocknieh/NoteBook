@@ -5,10 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
-    "ipykernel==7.2.0",
-    "matplotlib>=3.10.9",
-    "networkx>=3.6.1",
-    "notebook>=7.5.6",
     "pipdeptree==2.35.3",
-    "pyvis>=0.3.2",
+    "matplotlib>=3.10.9",
+    "ipykernel==7.2.0",
 ]

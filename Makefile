@@ -1,11 +1,8 @@
-default: run
-
-run:
-	g++ main.cpp -o main
+run: main
 	./main
 
-clean:
-	rm -f main.exe
+main: main.cpp
+	g++ main.cpp -o main
 
-serve:
-	./FPGA/hw_server.exe
+clean:
+	rm -f ./main

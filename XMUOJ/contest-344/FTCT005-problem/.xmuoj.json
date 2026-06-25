@@ -6,10 +6,11 @@
   "contestTitle": "算法设计与分析2026第五次实验课（曹刘娟、张德富、沈思淇）",
   "displayId": "FTCT005",
   "title": "芙蓉湖泛舟",
-  "language": "Python3",
-  "sourceFile": "main.py",
+  "language": "C++",
+  "sourceFile": "main.cpp",
   "sourceFiles": {
-    "Python3": "main.py"
+    "Python3": "main.py",
+    "C++": "main.cpp"
   },
   "createdAt": "2026-05-15T16:35:32.980Z"
 }
