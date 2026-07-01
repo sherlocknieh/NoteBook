@@ -44,9 +44,7 @@ int main() {
                 up[i] = max(up[i], up[j] + 1);
             }
         }
-        cout << up[i] <<' '; // 输出 up[i] 的值
     }
-    cout << endl; // 换行
 
     for (int i = n - 2; i >= 0; --i) {
         for (int j = i + 1; j < n; ++j) {
@@ -54,9 +52,7 @@ int main() {
                 dn[i] = max(dn[i], dn[j] + 1);
             }
         }
-        cout << dn[i] <<' '; // 输出 dn[i] 的值
     }
-    cout << endl; // 换行
 
     int max_length = 0;
     for (int i = 0; i < n; ++i) {

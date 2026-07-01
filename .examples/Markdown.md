@@ -52,6 +52,29 @@ graph TD
     C --> E[填充红色]
 ```
 
+```mermaid
+sequenceDiagram
+    autonumber
+    participant FE as Frontend
+    participant EF as Edge Function<br/>breakdown_task
+    participant LLM as OpenAI-Compatible API
+
+    FE->>EF: POST /breakdown_task\n{todosTree, selectedNodeId, query}
+    EF->>EF: 校验请求体 + 构造上下文
+    EF->>LLM: chat.completions.create(stream=true)
+
+    loop 每个流分片 chunk
+        LLM-->>EF: delta.content
+        EF->>EF: 追加 fullContent
+        EF->>EF: 增量解析完整任务对象
+        alt 解析到新任务
+            EF-->>FE: SSE data: {type:\"task\", data, index}
+        end
+    end
+
+    EF-->>FE: SSE data: {type:\"done\", totalCount}
+```
+
 
 ## TikZ
 
