@@ -5,7 +5,11 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
-    "pipdeptree==2.35.3",
     "matplotlib>=3.10.9",
     "ipykernel==7.2.0",
+]
+
+[dependency-groups]
+dev = [
+    "zensical>=0.0.62",
 ]
